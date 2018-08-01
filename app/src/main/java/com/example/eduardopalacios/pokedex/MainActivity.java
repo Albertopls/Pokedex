@@ -3,6 +3,7 @@ package com.example.eduardopalacios.pokedex;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Window;
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements showResults {
 
     AdapterCharacter adapterCharacter;
-    LinearLayoutManager llm;
+    GridLayoutManager llm;
     List<Pokemon> characters;
     @BindView(R.id.recycler)
     RecyclerView recycler;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements showResults {
 
         SendData.sendPost(this);
 
-        llm = new LinearLayoutManager(this);
+        llm = new GridLayoutManager(this,4);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(llm);
 
