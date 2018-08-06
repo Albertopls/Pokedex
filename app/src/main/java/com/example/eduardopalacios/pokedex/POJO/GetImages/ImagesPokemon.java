@@ -1,4 +1,4 @@
-package com.example.eduardopalacios.pokedex.POJO.sprites;
+package com.example.eduardopalacios.pokedex.POJO.GetImages;
 
 public class ImagesPokemon {
 

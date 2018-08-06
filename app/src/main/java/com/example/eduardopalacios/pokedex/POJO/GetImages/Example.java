@@ -1,5 +1,5 @@
 
-package com.example.eduardopalacios.pokedex.POJO.sprites;
+package com.example.eduardopalacios.pokedex.POJO.GetImages;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -24,7 +24,7 @@ public class Example {
     private Boolean isMega;
     @SerializedName("form_names")
     @Expose
-    private List<Object> formNames = null;
+    private List<String> formNames = null;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -33,7 +33,7 @@ public class Example {
     private Boolean isDefault;
     @SerializedName("names")
     @Expose
-    private List<Object> names = null;
+    private List<String> names = null;
     @SerializedName("form_name")
     @Expose
     private String formName;
@@ -87,11 +87,11 @@ public class Example {
         this.isMega = isMega;
     }
 
-    public List<Object> getFormNames() {
+    public List<String> getFormNames() {
         return formNames;
     }
 
-    public void setFormNames(List<Object> formNames) {
+    public void setFormNames(List<String> formNames) {
         this.formNames = formNames;
     }
 
@@ -111,11 +111,11 @@ public class Example {
         this.isDefault = isDefault;
     }
 
-    public List<Object> getNames() {
+    public List<String> getNames() {
         return names;
     }
 
-    public void setNames(List<Object> names) {
+    public void setNames(List<String> names) {
         this.names = names;
     }
 

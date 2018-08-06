@@ -1,5 +1,5 @@
 
-package com.example.eduardopalacios.pokedex.POJO.sprites;
+package com.example.eduardopalacios.pokedex.POJO.GetImages;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

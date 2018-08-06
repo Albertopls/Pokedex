@@ -1,9 +1,10 @@
-package com.example.eduardopalacios.pokedex.POJO;
+
+package com.example.eduardopalacios.pokedex.POJO.GetImages;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class VersionGroup {
 
     @SerializedName("url")
     @Expose
