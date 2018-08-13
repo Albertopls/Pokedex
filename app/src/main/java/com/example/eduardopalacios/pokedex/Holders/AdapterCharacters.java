@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.eduardopalacios.pokedex.POJO.Characters.Pokemon;
+import com.example.eduardopalacios.pokedex.data.ResponseCharacters.Characters.Pokemon;
 import com.example.eduardopalacios.pokedex.R;
 
 import java.util.List;
