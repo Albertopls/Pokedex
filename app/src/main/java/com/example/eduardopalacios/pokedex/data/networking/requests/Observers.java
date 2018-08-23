@@ -15,7 +15,7 @@ public abstract class Observers<T> extends DisposableObserver<T> {
     public void onError(Throwable e) {
 
 
-        onError(e.getMessage());
+        onTypeError(e);
 
     }
 
@@ -26,5 +26,5 @@ public abstract class Observers<T> extends DisposableObserver<T> {
 
     protected abstract void onSuccess(T t);
 
-    protected abstract void onError(String error);
+    protected abstract void onTypeError(Throwable i);
 }

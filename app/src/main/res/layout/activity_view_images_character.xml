@@ -1,35 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="match_parent"
+    android:id="@+id/swipeRefresh"
     tools:context=".ui.showUniqueCharacter.viewImagesCharacter">
 
 
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="80dp"
-        android:src="@drawable/load"/>
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="80dp"
-        android:src="@drawable/load"/>
-    <ImageView
-        android:id="@+id/image3"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="80dp"
-        android:src="@drawable/load"/>
-    <ImageView
-        android:id="@+id/image4"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="80dp"
-        android:src="@drawable/load"/>
 
-</LinearLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <include
+            layout="@layout/item_error_conection"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </include>
+
+        <LinearLayout
+            android:id="@+id/lly_images"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:src="@drawable/load" />
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:src="@drawable/load" />
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:src="@drawable/load" />
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:src="@drawable/load" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

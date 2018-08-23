@@ -7,6 +7,7 @@ import com.example.eduardopalacios.pokedex.ui.showUniqueCharacter.CharacterPrese
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 @Module
 public class CharacterModel {
@@ -36,6 +37,12 @@ public class CharacterModel {
     {
         return new CharacterInteractor();
     }
+
+    @Provides
+    public CompositeDisposable getDisposables() {
+        return  new CompositeDisposable();
+    }
+
 
     
 }

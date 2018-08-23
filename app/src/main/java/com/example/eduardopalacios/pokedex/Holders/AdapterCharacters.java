@@ -28,7 +28,6 @@ public class AdapterCharacters extends RecyclerView.Adapter<AdapterCharacters.Ch
 
 
     public AdapterCharacters(Context context, List<Pokemon> pokemons) {
-        Log.d("tag",pokemons.get(0).getImages());
         this.context = context;
         this.pokemons = pokemons;
         clickCharacter =(clickCharacter)context;
