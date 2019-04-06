@@ -14,11 +14,14 @@ import android.widget.Toast;
 
 import com.example.eduardopalacios.pokedex.Holders.AdapterCharacters;
 import com.example.eduardopalacios.pokedex.Holders.clickCharacter;
+import com.example.eduardopalacios.pokedex.PHV.Item;
 import com.example.eduardopalacios.pokedex.R;
 import com.example.eduardopalacios.pokedex.base.BaseActivity;
 import com.example.eduardopalacios.pokedex.data.ResponseCharacters.Characters.Pokemon;
 import com.example.eduardopalacios.pokedex.di.CharacterApplication;
+import com.example.eduardopalacios.pokedex.ui.showUniqueCharacter.CharacterPresenter;
 import com.example.eduardopalacios.pokedex.ui.showUniqueCharacter.viewImagesCharacter;
+import com.mindorks.placeholderview.PlaceHolderView;
 
 import java.util.List;
 
@@ -32,18 +35,19 @@ public class viewCharacters extends BaseActivity implements CharactersMvpView, c
 
 
     @BindView(R.id.rvCharacters)
-    RecyclerView recycler;
+    PlaceHolderView placeHolderView;
+
+   // @Inject
+    //CharactersPresenter presenter;
 
     @Inject
-    CharactersPresenter presenter;
+    CharactersMvpPresenter <CharactersMvpView,CharactersMvpInteractor> charactersPresenter;
 
     @BindView(R.id.Constraint_Error_Connection)
     ConstraintLayout constraintErrorConnection;
 
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
-
-    viewCharacters viewCharacters =this;
 
 
     @Override
@@ -54,8 +58,8 @@ public class viewCharacters extends BaseActivity implements CharactersMvpView, c
 
 
         ((CharacterApplication) getApplication()).getComponent().inject(this);
-
-        presenter.RequestValues(viewCharacters, getApplication());
+        charactersPresenter.onAttach(this);
+        charactersPresenter.RequestValues();
 
         onLoadErrorConstraint(constraintErrorConnection);
 
@@ -73,12 +77,21 @@ public class viewCharacters extends BaseActivity implements CharactersMvpView, c
     @Override
     public void showResults(List<Pokemon> pokemons) {
 
-        AdapterCharacters adapterCharacter = new AdapterCharacters(this, pokemons);
+        //AdapterCharacters adapterCharacter = new AdapterCharacters(this, pokemons);
 
-            recycler.setHasFixedSize(true);
-            recycler.setLayoutManager(new GridLayoutManager(this, 4));
-            recycler.setAdapter(adapterCharacter);
+          //  recycler.setHasFixedSize(true);
+            //recycler.setLayoutManager(new GridLayoutManager(this, 4));
+            ///recycler.setAdapter(adapterCharacter);
+        placeHolderView.getBuilder()
+                .setHasFixedSize(false)
+                .setLayoutManager(new GridLayoutManager(this,4));
+        for (Pokemon pokemon:pokemons){
 
+            placeHolderView.addView(
+                    new Item(this,
+                    pokemon.getImages(),
+                    pokemon.getName()));
+        }
 
     }
 
@@ -95,7 +108,7 @@ public class viewCharacters extends BaseActivity implements CharactersMvpView, c
     public void OnErrorConection() {
         super.OnErrorConection();
 
-        recycler.setVisibility(View.INVISIBLE);
+        placeHolderView.setVisibility(View.INVISIBLE);
 
 
 
@@ -106,13 +119,13 @@ public class viewCharacters extends BaseActivity implements CharactersMvpView, c
     public void OnSuccessConection() {
         super.OnSuccessConection();
 
-        recycler.setVisibility(View.VISIBLE);
+        placeHolderView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onRefresh() {
 
-        presenter.RequestValues(viewCharacters, getApplication());
+        charactersPresenter.RequestValues();
 
         new Handler().postDelayed(new Runnable() {
             @Override

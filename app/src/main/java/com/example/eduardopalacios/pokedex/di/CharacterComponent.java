@@ -14,7 +14,6 @@ public interface CharacterComponent {
 
     void inject(viewCharacters viewCharacters);
 
-    void injectPresenter(CharactersPresenter presenter);
 
     void injectPresenterinView(viewImagesCharacter imagesCharacter);
 

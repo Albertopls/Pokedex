@@ -2,8 +2,12 @@ package com.example.eduardopalacios.pokedex.ui.showCharacters;
 
 import android.app.Application;
 
-public interface CharactersMvpPresenter {
+import com.example.eduardopalacios.pokedex.base.BasePresenter;
 
-    void RequestValues(viewCharacters view, Application application);
+
+public interface CharactersMvpPresenter<V extends CharactersMvpView, I extends CharactersMvpInteractor>
+        extends BasePresenter<V,I>{
+
+    void RequestValues();
 
 }

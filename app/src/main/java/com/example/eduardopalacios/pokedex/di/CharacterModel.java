@@ -1,6 +1,9 @@
 package com.example.eduardopalacios.pokedex.di;
 
 import com.example.eduardopalacios.pokedex.ui.showCharacters.CharactersInteractor;
+import com.example.eduardopalacios.pokedex.ui.showCharacters.CharactersMvpInteractor;
+import com.example.eduardopalacios.pokedex.ui.showCharacters.CharactersMvpPresenter;
+import com.example.eduardopalacios.pokedex.ui.showCharacters.CharactersMvpView;
 import com.example.eduardopalacios.pokedex.ui.showCharacters.CharactersPresenter;
 import com.example.eduardopalacios.pokedex.ui.showUniqueCharacter.CharacterInteractor;
 import com.example.eduardopalacios.pokedex.ui.showUniqueCharacter.CharacterPresenter;
@@ -13,16 +16,22 @@ import io.reactivex.disposables.CompositeDisposable;
 public class CharacterModel {
 
 
-    @Provides
+   /* @Provides
     public CharactersPresenter charactersPresenter()
     {
         return new CharactersPresenter();
-    }
+    }*/
+
 
     @Provides
-    public CharactersInteractor charactersInteractor()
+    public CharactersMvpPresenter<CharactersMvpView,CharactersMvpInteractor> charactersPresenter
+            (CharactersPresenter<CharactersMvpView, CharactersMvpInteractor>presenter){
+        return presenter;
+    }
+    @Provides
+    public CharactersMvpInteractor charactersInteractor( CharactersInteractor charactersInteractor)
     {
-        return new CharactersInteractor();
+        return charactersInteractor;
     }
 
 
@@ -44,5 +53,5 @@ public class CharacterModel {
     }
 
 
-    
+
 }

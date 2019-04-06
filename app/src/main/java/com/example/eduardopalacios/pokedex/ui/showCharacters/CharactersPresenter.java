@@ -2,6 +2,7 @@ package com.example.eduardopalacios.pokedex.ui.showCharacters;
 
 import android.app.Application;
 
+import com.example.eduardopalacios.pokedex.base.BasePresenterImpl;
 import com.example.eduardopalacios.pokedex.data.networking.ApiHelper.AppApiHelper;
 import com.example.eduardopalacios.pokedex.di.CharacterApplication;
 import com.example.eduardopalacios.pokedex.data.networking.requests.Observers;
@@ -15,22 +16,27 @@ import javax.inject.Inject;
 import com.example.eduardopalacios.pokedex.data.ResponseCharacters.Characters.MiItems;
 import com.example.eduardopalacios.pokedex.data.ResponseCharacters.Characters.Pokemon;
 import com.example.eduardopalacios.pokedex.data.ResponseCharacters.Characters.Result;
-
 import io.reactivex.disposables.CompositeDisposable;
 
-public class CharactersPresenter implements CharactersMvpPresenter {
+public class CharactersPresenter<V extends CharactersMvpView,I extends CharactersMvpInteractor>
+        extends BasePresenterImpl<V,I>implements CharactersMvpPresenter<V,I> {
+
+    //@Inject
+    //CharactersInteractor charactersInteractor;
+    //@Inject
+    //CompositeDisposable compositeDisposable;
 
     @Inject
-    CharactersInteractor charactersInteractor;
-    @Inject
-    CompositeDisposable compositeDisposable;
+    public CharactersPresenter(I interactor, CompositeDisposable compositeDisposable) {
+        super(interactor, compositeDisposable);
+    }
 
     @Override
-    public void RequestValues(final viewCharacters view, Application application) {
+    public void RequestValues() {
 
-        ((CharacterApplication)application).getComponent().injectPresenter(this);
+        //((CharacterApplication)application).getComponent().injectPresenter(this);
 
-        compositeDisposable.add(AppApiHelper.commonObservable(charactersInteractor.getCharactersPokemon()).
+        getCompositeDisposable().add(AppApiHelper.commonObservable(getInteractor().getCharactersPokemon()).
 
                 subscribeWith(new Observers<MiItems>() {
             @Override
@@ -47,10 +53,10 @@ public class CharactersPresenter implements CharactersMvpPresenter {
                     characters.add(new Pokemon(image,result.getName()));
 
                 }
-                view.OnSuccessConection();
-                view.showResults(characters);
+                getView().OnSuccessConection();
+                getView().showResults(characters);
 
-                compositeDisposable.dispose();
+                getCompositeDisposable().dispose();
 
             }
 
@@ -59,7 +65,7 @@ public class CharactersPresenter implements CharactersMvpPresenter {
 
                 if (i instanceof IOException)
                 {
-                    view.OnErrorConection();
+                    getView().OnErrorConection();
                 }
 
             }

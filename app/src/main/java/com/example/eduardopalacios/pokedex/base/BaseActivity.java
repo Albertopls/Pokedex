@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-public class BaseActivity extends AppCompatActivity implements MvpView {
+public class BaseActivity extends AppCompatActivity implements BaseView {
 
 
     ConstraintLayout constraintLayout;
